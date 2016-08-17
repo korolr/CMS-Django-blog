@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+{% load tags %}
+{% load staticfiles %}
+{% block article %}
+
+
+
+
+<header class="intro-header" style="background-image: url('{% about_image 1 %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>{% about_me 1 %}</h1>
+
+                    <hr class="small">
+                    <span class="subheading">{% about_opisanie 1 %}</span> </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {% autoescape off %} {% about_content 1 %}{% endautoescape %}
+        </div>
+    </div>
+</div>
+<hr>
+
+{% endblock %}

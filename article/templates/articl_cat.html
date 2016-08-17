@@ -1,0 +1,72 @@
+{% extends 'main.html' %}
+{% load tags %}
+
+{% load staticfiles %}
+{% load i18n mptt_tags %}
+
+{% block article %}
+
+
+
+
+
+
+    <header class="intro-header" style="background-image: url({% site_img 1 %})">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>{% nameblog 1 %}</h1>
+                        {% block site %}{% endblock %}
+                        <hr class="small">
+                        <span class="subheading">{% opisanie 1 %}</span> </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+    {% for article in category_articles %}
+
+
+        <h2> Категория: {{ category }}</h2>
+
+
+        <div class="post-preview">
+            <a href="/articles/get/{{ article.id }}/">
+                <h2 class="post-title">
+                    {{ article.article_title }}
+                </h2>
+                <h3 class="post-subtitle">
+                    {% autoescape off %}{{ article.article_taxt }}{% endautoescape %}
+                </h3>
+            </a>
+            <p class="post-meta">Дата: {{ article.article_date }}</p>
+        </div>
+        <hr>
+
+    {% endfor %}
+    </div>
+    </div>
+        <ul class="project-root">
+            {% recursetree projects %}
+                <li>
+                    <a  href="/category/get/{{ node.id }}/" title="{% blocktrans with project=node %}Show all entries in {{ project }}{% endblocktrans %}">{{ node }}</a>
+                    {% if not node.is_leaf_node %}
+                        <ul class="project-children project-{{ node.slug }}">
+                            {{ children }}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endrecursetree %}
+            {% if not projects %}
+                <li>
+                    {% trans "No projects yet." %}
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+
+{%  endblock %}

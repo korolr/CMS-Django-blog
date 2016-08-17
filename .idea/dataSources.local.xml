@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="PostgreSQL - djangobd@localhost" uuid="e8a5e9db-4971-4a51-80af-0b8cbc517cb6">
+      <secret-storage>master_key</secret-storage>
+      <user-name>korolr</user-name>
+      <introspection-scope>djangobd:korolr,pg_catalog,public</introspection-scope>
+      <resolve-scope>djangobd:korolr,public</resolve-scope>
+    </data-source>
+  </component>
+</project>

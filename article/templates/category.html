@@ -1,0 +1,28 @@
+{% load staticfiles %}
+{% load i18n mptt_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul class="project-root">
+    {% recursetree projects %}
+        <li>
+            <a  href="/category/get/{{ node.id }}/" title="{% blocktrans with project=node %}Show all entries in {{ project }}{% endblocktrans %}">{{ node }}</a>
+            {% if not node.is_leaf_node %}
+                <ul class="project-children project-{{ node.slug }}">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+    {% if not projects %}
+        <li>
+            {% trans "No projects yet." %}
+        </li>
+    {% endif %}
+</ul>
+</body>
+</html>
