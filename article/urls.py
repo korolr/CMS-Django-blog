@@ -1,11 +1,10 @@
-from django.conf.urls import patterns
-from django.conf.urls import url
+from django.conf.urls import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
 import article.views
 
-urlpatterns = patterns('',
+urlpatterns = [
 
     url(r'^articles/all/$', article.views.articles),
     url(r'^articles/get/(?P<article_id>\d+)/$', article.views.article),
@@ -21,7 +20,7 @@ urlpatterns = patterns('',
 
 
 
-    )
+    ]
 
 if True:
     urlpatterns += staticfiles_urlpatterns() + static(

@@ -24,8 +24,7 @@ def articles(request):
         if not posts:
             return render_to_response('fail_search.html', {'posts': posts})
     return render_to_response('articles.html', {'articles': posts, 'projects': Category.objects.all(),
-                                                'form_keywords': keywords_form},
-                              context_instance=RequestContext(request))
+                                                'form_keywords': keywords_form})
 
 
 def article(request, article_id=1):

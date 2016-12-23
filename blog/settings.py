@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ['127.0.0.1',]
 # Application definition
 
 INSTALLED_APPS = [
-    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -94,11 +93,11 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangobd',
+        'NAME': 'db_board',
         'USER': 'korolr',
         'PASSWORD': '228',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
@@ -140,10 +139,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = "/home/korolr/Desktop/python/Django-blog-bootstrap/templates"
 
-STATICFILES_DIRS = (
-    ('static', '/Users/admin/Desktop/django/da/bin/blog/templates' ),
-)
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
     'default': {
