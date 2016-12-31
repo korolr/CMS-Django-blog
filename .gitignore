@@ -1,6 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
 media/
 .idea/
+templates/admin
+templates/ckeditor
+templates/mptt
+templates/el-pagination
 ### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
