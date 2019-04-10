@@ -1,0 +1,54 @@
+version: "3"
+
+# хранилища
+volumes:
+  pgdata:
+    driver: local
+services:
+  nginx:
+    # при падении будет стараться подняться
+    restart: always
+    # только свежий nginx
+    image: nginx:latest
+    # слушает порт 8080
+    expose:
+      - 8080
+    # мапаем порт 80 на его 8080. Тогда сайт будет доступен по адресу localhost. Убедись, что порт у тебя не занят.
+    ports:
+      - "80:8080"
+    # монтируем только те директории, в которых лежит статика, т.к. nginx с динамикой не будет работать. Также директорию с логами и файл настройки, который мы подготовили.
+    volumes:
+      - ./src/static:/srv/www/src/static
+      - ./src/media:/srv/www/src/media
+      - ./src/logs:/srv/www/src/logs
+      - ./docker/nginx:/etc/nginx/conf.d
+    # и nginx зависит от контейнера python. Т.е. python должен быть запущен первым
+    depends_on:
+      - python
+  python:
+    restart: always
+    # указываем откуда собирать образ
+    build:
+      context: .
+      dockerfile: docker/python/Dockerfile
+    # монтируем директорию проекта
+    volumes:
+      - ./src:/srv/www/src
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+    # запускаем django
+    command: "python3 ./manage.py runserver 0.0.0.0:8000"
+  postgres:
+    # Ниже даже расписывать не хочу, насколько все просто: логин, пароль, БД, порты и т.д.
+    image: postgres:9.3.22
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: postgresql_password
+      POSTGRES_DB: database_name
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - pgdata:/var/lib/postgresql/data

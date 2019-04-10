@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+{% block article %}
+{% load mptt_tags %}
+{% load i18n mptt_tags %}
+
+    <header class="intro-header" style="background-image: url('{{MEDIA_URL}}{{ article.article_image.url}}')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>{{ article.article_title }}</h1>
+                        <span class="meta">{{ article.article_date }}</span>
+                        <span class="meta">Из категории:<a href="/category/get/{{ article.category.id }}/"> {{ article.category }}</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p>{% autoescape off %}{{ article.article_text }}{% endautoescape %}</p>
+                    <br>
+                    <br>
+                    <div id="disqus_thread"></div>
+                    <script>
+                        /**
+                         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+                         */
+                        /*
+                         var disqus_config = function () {
+                         this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                         this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                         };
+                         */
+                        (function() {  // DON'T EDIT BELOW THIS LINE
+                            var d = document, s = d.createElement('script');
+
+                            s.src = '//korolrme.disqus.com/embed.js';
+
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+                </div>
+
+            </div>
+
+        </div>
+
+    </article>
+
+    <hr>
+       {% endblock %}

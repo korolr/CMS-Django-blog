@@ -1,5 +1,7 @@
-Django blog boostrap.
+
+This repo made in 2015! In 2019 add support docker container and that is all
 ===================
+Django blog boostrap. 
 With Django 1.9.7
 Features:
 -------------
@@ -17,10 +19,10 @@ Features:
 ```
 Step 1: Create and enable virtual environment
 $ git clone https://github.com/korolr/CMS-Django-blog.git
-$ cd CMS-Django-blog
-$ pip install -r requirements.txt
-Step 2: Configure your postgresql and migrate
-$ ./manage.py runserver
+$ cd CMS-Django-blog 
+$ docker-compose up -d
+
+Step 2: Go to 127.0.0.1:80
 ```
 Screenshot site:
 -------------
